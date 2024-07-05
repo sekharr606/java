@@ -19,6 +19,10 @@ resource "google_compute_subnetwork" "subnet-2" {
   network       = google_compute_network.vpc_network.self_link
   region        = var.region
 }
+resource "google_compute_address" "static" {
+  name = "ipv4-address"
+}
+
 resource "google_compute_instance" "vm_instance" {
   project      = var.project_id
   name         = var.vm_name
@@ -43,11 +47,13 @@ resource "google_compute_instance" "vm_instance" {
     network    = google_compute_network.vpc_network.id
     subnetwork = google_compute_subnetwork.subnet-1.id
     access_config {
+nat_ip = google_compute_address.static.address
       // Include this line to give the VM an external IP
     }
   }
   metadata = {
     foo = "http-server"
+ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
   metadata_startup_script = <<-EOF
     #!/bin/bash

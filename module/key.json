@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "vivid-poet-385404",
+  "private_key_id": "e276c95fa32a4465d294bf9e51002230513d8824",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDr2D+RNoLQEONT\nnSFSNuWsSV775iPE/N3M44A9s0+IQJnIfWx4JPqoXAp5AaNBE9Pc7GYtwj3WU3wm\nih1zfgIzQwRYlqgWh50VA8EBBRd36ryrbhQVgv+6/yNguKcypGinBt6EHH/WDxmR\nilh9/QkOhKywFjP5UjHbuooOCIw3mrVEK+jSHY8v7qk+B00pCDke9uUxFL26a4FO\nZdy5KHy9wct35MJ2Yz9UX2yUF1s9s8BOKINALA10F5hZK1fjA+nL1OuT1DCmsn14\nSec9FPe4JKd3TjLgnXsnJ+FufpM1+v3e1oIxs/jhDkpcpXpVJ5WQZW7wE+js15u6\n5yp4EgwBAgMBAAECggEAOoMitkDLcJqYA8EaqL6U+csURTPCUReZYcFZqjUn+Lpq\nTOsNM7uc8pMvR/lHixhDum5uJVEpLVj2FsuyZdpv6k7or5/lIP3RU4rkYf/k5Cv5\nViDP28xt7PNq0A7P8IkIq9PQ9f7qGm4RnmGv9cYG7rKs81z21Rb25rhfkv685vhB\nqptbAvb8ixLACIadD+db3Sgfc9Yj+1muwIY8weyqD4aLN3n3Yt96pL8nRWrI9/Hb\nmE85qgcpFOrPYf394QHvKJynMB0dvXS6nyJ9E3ATF0xTPcvQdXtGuQ2o2BK3Berl\naQes0VBD1HzWoVcqIrSyLVcjPXR4Wj0Tv5ZF4dwwKQKBgQD54HNCVn0W2Sb6POtd\n1PfbeuCdcfAgyzgyxk8gjR/Qrw6HkCQL0TjlQ0gGR2Dl42Lqwu1MiAMC3S/YH2P1\nyJrRR55Eq+6dKmg/nibfQnWba/NxhJtUIhqEmLiNaQkVmNq+hgByiZAyBkxU3Ggt\nCu2Toj7Vv8kG10VPNjB5UWOFxQKBgQDxn8VgxLqvTXZibQlMua5b6quj3H9YKXP3\n6MDR6a3ni6nwy//+Sy/atG30m0MJRyhCdG2SykDwpB3iVOqtRqXmIgRh6p+qEe94\n964Pl7pgvVeolTbKWafTctIUiQcyrNEYDrOBCsFIrkzNHvjoVlxJFGnFijLwRld0\nGQ0rgChNDQKBgQCaXAo3j8Akbi8C5MEtLNOUdPruqCUDzSZBT3owDJ37xzh9jBCI\ncE3qar7CijOUr/w6NAJthZP+n+7fXrzcZ3kkEU728xMrabgOnL88qgyG34/6r0VZ\nGtwwzzsquBkRi2SNz6/VEZ/PF07uGV4NfTO4QMD6QEiJ/k/ll/8n4pxNVQKBgQCw\neGlW4LgcOq4g+tPU9rRSq5VKa0uSn0v0n0jcxxfdSdMHbGb+WfmMeUTpZtBSIWdV\nCeXRVOiTGLo+yJhRj4yxBN1AinSsaMcHCZZWCxHzf7ZbCQfoSAzb0TuABgh8yV05\nfds6fxlltO+gzGMshY6HTWJnBSVo+Wb8AyPsRoCorQKBgGASChFs/ihpfvKki+q1\nvAuJRCIKr7kSFRxESuNwyhJChL6meBvLjD7qAUi7RIXqgHN59wq3TCWSwmnY09Yl\nHPnJN7pBeSzLXa3zPMImK60Lm1XAA8otGC7mqSw/fcNsEyns01I01vBvG1gb3RuL\nEWI3dtU0h5eNS0Yvt4+CWi/g\n-----END PRIVATE KEY-----\n",
+  "client_email": "terraform@vivid-poet-385404.iam.gserviceaccount.com",
+  "client_id": "100425422526006409797",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/terraform%40vivid-poet-385404.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

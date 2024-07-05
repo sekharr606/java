@@ -14,4 +14,6 @@ output "private_ssh_key" {
   sensitive   = true
 }*/
 
-
+output "vm_instance_external_ip" {
+  value = module.vpc_network.vm_instance_external_ip
+}

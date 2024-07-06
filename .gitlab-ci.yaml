@@ -14,18 +14,27 @@ before_script:
 
 setup:
   stage: setup
+  tags:
+    - my-runner-tag
   script:
     - echo "Setting up Terraform and Node.js dependencies"
 
 deploy:
   stage: deploy
+  tags:
+    - test
   script:
     - echo "Starting Terraform deployment"
+    - pwd
+    - ls -l
     - cd terraform
     - terraform init
     - terraform apply -auto-approve
-    - echo "Terraform deployment complete"
     - cd ..
+    - echo "Current directory after Terraform:"
+    - pwd
+    - ls -l
+    - echo "Terraform deployment complete"
     - echo "Deploying Node.js application"
     - node hello.js
   artifacts:

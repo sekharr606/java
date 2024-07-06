@@ -1,13 +1,41 @@
-image: alpine:latest
+name: Deploy Node.js Application with Terraform
 
-stages:
-  - test
+on:
+  push:
+    branches:
+      - main
 
-test:
-  stage: test
-  script:
-    - echo "Running tests..."
-    - # Add your test commands here
-  after_script:
-    - echo "Cleaning up..."
-    - # Add your cleanup commands here
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      run: terraform init
+      working-directory: ./terraform
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      working-directory: ./terraform
+
+    - name: SSH into EC2 and run Node.js app
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y sshpass
+        sshpass -p "YOUR_EC2_INSTANCE_PASSWORD" ssh -o StrictHostKeyChecking=no ec2-user@$(terraform output -raw instance_ip) 'cd <YOUR_REPO_NAME> && node hello.js'
+      env:
+        instance_ip: ${{ steps.terraform.outputs.instance_ip }}

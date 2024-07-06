@@ -1,31 +1,13 @@
-image: hashicorp/terraform:latest
+image: alpine:latest
 
 stages:
-  - init
-  - plan
-  - apply
+  - test
 
-before_script:
-  - terraform --version
-  - terraform init -backend-config="path=$TF_ROOT/terraform.tfstate"
-
-init:
-  stage: init
+test:
+  stage: test
   script:
-    - terraform init
-
-plan:
-  stage: plan
-  script:
-    - terraform plan -out=tfplan
-  artifacts:
-    paths:
-      - tfplan
-
-apply:
-  stage: apply
-  script:
-    - terraform apply -auto-approve tfplan
-  when: manual
-  dependencies:
-    - plan
+    - echo "Running tests..."
+    - # Add your test commands here
+  after_script:
+    - echo "Cleaning up..."
+    - # Add your cleanup commands here

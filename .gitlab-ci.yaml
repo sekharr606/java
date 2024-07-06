@@ -4,6 +4,9 @@ stages:
   - setup
   - deploy
 
+variables:
+  NODE_ENV: production
+
 cache:
   paths:
     - node_modules/
@@ -18,20 +21,22 @@ setup:
     - test
   script:
     - echo "Setting up Terraform and Node.js dependencies"
+    - node -v
+    - npm -v
 
 deploy:
   stage: deploy
   tags:
-    - my-runner-tag
+    - test
   script:
     - echo "Starting Terraform deployment"
     - pwd
     - ls -l
-    - cd provisoners/vm
+    - cd provisioners/vm
     - ls -l
     - terraform init
     - terraform apply -auto-approve
-    - cd ..
+    - cd ../..
     - echo "Current directory after Terraform:"
     - pwd
     - ls -l
@@ -40,12 +45,12 @@ deploy:
     - node hello.js
   artifacts:
     paths:
-      - terraform/main.tf
-      - terraform/variables.tf
-      - terraform/outputs.tf
+      - provisioners/vm/main.tf
+      - provisioners/vm/variables.tf
+      - provisioners/vm/outputs.tf
     expire_in: 1 week
 
 after_script:
   - echo "Cleaning up"
-  - ls -l terraform
-  - rm -rf terraform/*.tf
+  - ls -l provisioners/vm
+  - rm -rf provisioners/vm/*.tf

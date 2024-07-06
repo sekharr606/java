@@ -1,41 +1,40 @@
-name: Deploy Node.js Application with Terraform
+image: hashicorp/terraform:latest
 
-on:
-  push:
-    branches:
-      - main
+stages:
+  - setup
+  - deploy
 
-jobs:
-  setup:
-    runs-on: ubuntu-latest
+cache:
+  paths:
+    - node_modules/
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+before_script:
+  - apk add --no-cache nodejs npm
+  - npm install
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
+setup:
+  stage: setup
+  script:
+    - echo "Setting up Terraform and Node.js dependencies"
 
-    - name: Install dependencies
-      run: npm install
+deploy:
+  stage: deploy
+  script:
+    - echo "Starting Terraform deployment"
+    - cd terraform
+    - terraform init
+    - terraform apply -auto-approve
+    - echo "Terraform deployment complete"
+    - cd ..
+    - echo "Deploying Node.js application"
+    - node hello.js
+  artifacts:
+    paths:
+      - terraform/main.tf
+      - terraform/variables.tf
+      - terraform/outputs.tf
+    expire_in: 1 week
 
-    - name: Install Terraform
-      uses: hashicorp/setup-terraform@v1
-
-    - name: Terraform Init
-      run: terraform init
-      working-directory: ./terraform
-
-    - name: Terraform Apply
-      run: terraform apply -auto-approve
-      working-directory: ./terraform
-
-    - name: SSH into EC2 and run Node.js app
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y sshpass
-        sshpass -p "YOUR_EC2_INSTANCE_PASSWORD" ssh -o StrictHostKeyChecking=no ec2-user@$(terraform output -raw instance_ip) 'cd <YOUR_REPO_NAME> && node hello.js'
-      env:
-        instance_ip: ${{ steps.terraform.outputs.instance_ip }}
+after_script:
+  - echo "Cleaning up"
+  - rm -rf terraform/*.tf

@@ -27,7 +27,8 @@ deploy:
     - echo "Starting Terraform deployment"
     - pwd
     - ls -l
-    - cd provisoners
+    - cd provisoners/vm
+    - ls -l
     - terraform init
     - terraform apply -auto-approve
     - cd ..

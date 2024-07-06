@@ -15,19 +15,19 @@ before_script:
 setup:
   stage: setup
   tags:
-    - my-runner-tag
+    - test
   script:
     - echo "Setting up Terraform and Node.js dependencies"
 
 deploy:
   stage: deploy
   tags:
-    - test
+    - my-runner-tag
   script:
     - echo "Starting Terraform deployment"
     - pwd
     - ls -l
-    - cd terraform
+    - cd provisoners
     - terraform init
     - terraform apply -auto-approve
     - cd ..
@@ -46,4 +46,5 @@ deploy:
 
 after_script:
   - echo "Cleaning up"
+  - ls -l terraform
   - rm -rf terraform/*.tf

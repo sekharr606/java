@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        NODE_HOME = '/usr/local/bin' // Path to your Node.js installation
         GIT_CREDENTIALS_ID = 'your-git-credentials-id'
     }
 
@@ -12,13 +13,33 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
-                // Insert your build steps here, e.g., running a build tool
-                sh 'echo "Building the project..."'
+                sh 'npm install'
             }
         }
 
-        stage('Test') {
+        stage('Run Tests') {
             steps {
-      
+                sh 'npm test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'npm start &'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Actions that always run after the pipeline completes
+            echo 'Cleaning up...'
+            deleteDir()
+        }
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pi
